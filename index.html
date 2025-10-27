@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Custom Title Here</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            animation: fadeInDown 0.8s ease;
+        }
+        
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .contact-links {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .contact-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.2);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .contact-links a:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        
+        nav {
+            background: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: #764ba2;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        
+        section {
+            margin-bottom: 4rem;
+            animation: fadeIn 1s ease;
+        }
+        
+        h2 {
+            color: #667eea;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .about-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+        }
+        
+        .about-card h3 {
+            color: #764ba2;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .about-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .about-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .about-card li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .project-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid #667eea;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+        }
+        
+        .project-card h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .tag {
+            background: #e8eaf6;
+            color: #667eea;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .project-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .skill-category h3 {
+            color: #764ba2;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .skill-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .experience-timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #667eea, #764ba2);
+        }
+        
+        .experience-item {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+            margin-left: 2rem;
+        }
+        
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -2.75rem;
+            top: 1.5rem;
+            width: 15px;
+            height: 15px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+        
+        .experience-item h3 {
+            color: #333;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .experience-item .role {
+            color: #764ba2;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .experience-item .date {
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sahil Devulapalli</h1>
+        <p>Data Science Student | Machine Learning Enthusiast | Cybersecurity Explorer</p>
+        <div class="contact-links">
+            <a href="tel:248-525-0417">📞 248-525-0417</a>
+            <a href="mailto:sahildev@umich.edu">✉️ sahildev@umich.edu</a>
+            <a href="https://linkedin.com/in/sahil-devulapalli" target="_blank">💼 LinkedIn</a>
+            <a href="https://github.com/sahildev23" target="_blank">💻 GitHub</a>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#leadership">Leadership</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>🎓 Education</h3>
+                    <p><strong>University of Michigan</strong><br>
+                    B.S. in Data Science, Minor in Mathematics<br>
+                    GPA: 3.66/4.0<br>
+                    Expected Graduation: May 2028</p>
+                    <p style="margin-top: 1rem;"><strong>Pursuing:</strong> Certificate in Cybersecurity (CC) – (ISC)²</p>
+                </div>
+                
+                <div class="about-card">
+                    <h3>💡 Relevant Coursework</h3>
+                    <ul>
+                        <li>Data Structures & Algorithms</li>
+                        <li>Discrete Mathematics</li>
+                        <li>Software, Hardware, IoT</li>
+                        <li>Programming & Data Structures</li>
+                        <li>Calculus I & II</li>
+                        <li>Data Science</li>
+                    </ul>
+                </div>
+                
+                <div class="about-card">
+                    <h3>🏀 Beyond Tech</h3>
+                    <ul>
+                        <li>Varsity Basketball Captain (4 years)</li>
+                        <li>Michigan Sports Analytics Society</li>
+                        <li>Camp Counselor & Private Coach</li>
+                        <li>Gym Training & Competitive Basketball</li>
+                        <li>AI Ethics & Data-Driven Design</li>
+                    </ul>
+                </div>
+                
+                <div class="about-card">
+                    <h3>🎯 Quick Facts</h3>
+                    <ul>
+                        <li>US Citizen based in Michigan</li>
+                        <li>Passionate about ML & Cybersecurity</li>
+                        <li>Co-founded nonprofit raising $3,500+</li>
+                        <li>Film enthusiast & travel lover</li>
+                        <li>Driven by data-driven solutions</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>🔒 Cyber Threat Detection using ML</h3>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">Cybersecurity</span>
+                        <span class="tag">Streamlit</span>
+                    </div>
+                    <p>Developed an anomaly detection model using Isolation Forests and PCA to identify suspicious network activity patterns, achieving 92% recall across 1M+ log entries. Engineered temporal features and visualized risk scores in a real-time Streamlit dashboard for immediate threat alerts.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>📊 Predictive Modeling on Real-World Data</h3>
+                    <div class="project-tags">
+                        <span class="tag">Scikit-Learn</span>
+                        <span class="tag">Data Pipelines</span>
+                        <span class="tag">ML</span>
+                    </div>
+                    <p>Improved model accuracy by 28% on a dataset of 100k+ records using Scikit-learn pipelines and cross-validation. Automated data cleaning with Pandas, reducing preprocessing time by 35%. Visualized model performance with Matplotlib, achieving a 0.15 improvement in F1-score.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>💰 Personal Finance Tracker</h3>
+                    <div class="project-tags">
+                        <span class="tag">Time-series</span>
+                        <span class="tag">ARIMA</span>
+                        <span class="tag">Prophet</span>
+                        <span class="tag">Analysis</span>
+                    </div>
+                    <p>Automated processing of 5,000+ nonprofit transactions to create clean datasets for anomaly detection. Implemented time-series forecasting using ARIMA and Prophet models, reducing spending prediction error by 22%. Built interactive dashboards to display spending trends and insights.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>📈 Stock Market Order Matching Simulator</h3>
+                    <div class="project-tags">
+                        <span class="tag">C++</span>
+                        <span class="tag">Data Structures</span>
+                        <span class="tag">Algorithms</span>
+                    </div>
+                    <p>Developed high-performance order-matching algorithms with custom heap structures, simulating 100k+ trades 35% faster. Benchmarked latency and throughput across 50+ trials to validate efficiency-memory tradeoffs in real-time trading scenarios.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>🗺️ Traveling Salesman Problem Optimization</h3>
+                    <div class="project-tags">
+                        <span class="tag">C++</span>
+                        <span class="tag">Graph Theory</span>
+                        <span class="tag">Optimization</span>
+                    </div>
+                    <p>Implemented and compared multiple TSP algorithms including brute-force, branch-and-bound, and 2-approximation methods. Optimized pathfinding with pruning and heuristics, achieving up to 70% runtime reduction. Integrated k-opt local search to minimize total path cost across 50+ simulated city graphs.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Python</span>
+                        <span class="skill-item">C++</span>
+                        <span class="skill-item">Java</span>
+                        <span class="skill-item">MATLAB</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Python Libraries</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">NumPy</span>
+                        <span class="skill-item">Pandas</span>
+                        <span class="skill-item">Scikit-learn</span>
+                        <span class="skill-item">Matplotlib</span>
+                        <span class="skill-item">Seaborn</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Core Competencies</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Machine Learning</span>
+                        <span class="skill-item">Data Visualization</span>
+                        <span class="skill-item">Statistical Modeling</span>
+                        <span class="skill-item">Cybersecurity</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Tools & Other</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Excel</span>
+                        <span class="skill-item">Git/GitHub</span>
+                        <span class="skill-item">Data Pipelines</span>
+                        <span class="skill-item">Algorithm Design</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="experience">
+            <h2>Work Experience</h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <h3>Michigan Sports Analytics Society</h3>
+                    <div class="role">Member</div>
+                    <div class="date">Current</div>
+                    <p>Built predictive models to evaluate player efficiency and forecast performance trends using advanced statistical methods and machine learning techniques.</p>
+                </div>
+                
+                <div class="experience-item">
+                    <h3>Beyond Juicery & Eatery</h3>
+                    <div class="role">Manager/Barista</div>
+                    <p>Optimized workflow metrics and analyzed operational data to cut customer wait times by 25%, improving overall customer satisfaction and store efficiency.</p>
+                </div>
+                
+                <div class="experience-item">
+                    <h3>Garage Grill and Fuel Bar</h3>
+                    <div class="role">Line Cook</div>
+                    <p>Streamlined prep workflows using time-tracking data analysis, resulting in a 15% reduction in customer wait times during peak hours.</p>
+                </div>
+                
+                <div class="experience-item">
+                    <h3>Party City</h3>
+                    <div class="role">Sales Associate</div>
+                    <p>Analyzed sales trends and customer behavior patterns to guide staffing decisions, contributing to a 12% increase in seasonal sales performance.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="leadership">
+            <h2>Leadership</h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <h3>Investing4Youth</h3>
+                    <div class="role">Co-President, Co-Founder</div>
+                    <div class="date">2020 – Present | Novi, MI</div>
+                    <p><strong>Co-founded a nonprofit promoting educational equity.</strong> Led the organization to raise over $3,500+ by optimizing donor outreach strategies and implementing data-driven engagement techniques.</p>
+                    <p style="margin-top: 0.5rem;">Directed 10+ national fundraisers using data segmentation to identify high-potential donors, successfully doubling annual contributions year-over-year.</p>
+                    <p style="margin-top: 0.5rem;">Built comprehensive Wix website with integrated analytics dashboards, increasing traffic by 40% and securing partnerships with 5+ organizations.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Sahil Devulapalli. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;">Data Science | Machine Learning | Cybersecurity</p>
+    </footer>
+</body>
+</html>
